@@ -22,7 +22,7 @@ interface TechCategory {
 
 interface Technology {
     name: string
-    icon: React.ElementType
+    icon: React.ComponentType<{ className?: string }>
 }
 
 const TechStack: React.FC = () => {
