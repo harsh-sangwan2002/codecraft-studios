@@ -14,6 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={fonts.sans.className}>
+      <head>
+        <link rel="icon" href="/logo.png" type="image/jpeg" />
+      </head>
       <body>{children}</body>
     </html>
   )

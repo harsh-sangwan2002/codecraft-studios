@@ -67,7 +67,7 @@ const PortfolioGallery: React.FC = () => {
                 "A comprehensive e-commerce platform built with Next.js and Stripe integration. Features include real-time inventory management, advanced search and filtering, user authentication, order tracking, and an admin dashboard. The platform handles over 10,000 products and serves thousands of daily users.",
             category: "webapp",
             technologies: ["Next.js", "React", "TypeScript", "Stripe", "PostgreSQL", "Tailwind CSS"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://programmers.io/wp-content/uploads/2024/10/Best-Ecomm-Plateforms.jpg",
             liveUrl: "https://demo-ecommerce.example.com",
             githubUrl: "https://github.com/example/ecommerce",
             featured: true,
@@ -83,7 +83,7 @@ const PortfolioGallery: React.FC = () => {
                 "A comprehensive mobile application for healthcare providers to manage patient records, appointments, and medical history. Built with React Native for cross-platform compatibility, featuring secure data encryption, offline capabilities, and integration with major healthcare systems.",
             category: "mobile",
             technologies: ["React Native", "Node.js", "MongoDB", "Firebase", "TypeScript"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://www.mindinventory.com/blog/wp-content/uploads/2022/10/healthcare-app1200.jpg",
             liveUrl: "https://healthcare-app.example.com",
             featured: true,
             completedDate: "2023-11-20",
@@ -98,7 +98,7 @@ const PortfolioGallery: React.FC = () => {
                 "An immersive 3D product configurator that allows customers to customize products in real-time. Built with Three.js and WebGL, featuring realistic materials, lighting, and physics. Customers can change colors, materials, and components while seeing real-time price updates.",
             category: "3d",
             technologies: ["Three.js", "WebGL", "React", "Node.js", "Blender"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://www.smartpixels.fr/wp-content/uploads/2022/03/Camille-Fournet-Configurateur-3D-1-1024x576.png",
             liveUrl: "https://3d-configurator.example.com",
             githubUrl: "https://github.com/example/3d-configurator",
             featured: true,
@@ -113,7 +113,7 @@ const PortfolioGallery: React.FC = () => {
                 "Complete redesign of a corporate website focusing on user experience and conversion optimization. Features include a custom CMS, blog system, contact forms, and integration with marketing tools. The site achieved a 40% increase in conversion rates post-launch.",
             category: "website",
             technologies: ["Next.js", "Sanity CMS", "Tailwind CSS", "Framer Motion"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWxDL6FFH7j9UPk3xSs_7RIkWbqfV_zS1D2g&s",
             liveUrl: "https://corporate-site.example.com",
             featured: false,
             completedDate: "2023-12-05",
@@ -127,7 +127,7 @@ const PortfolioGallery: React.FC = () => {
                 "Comprehensive design system and dashboard interface for a SaaS analytics platform. Includes user research, wireframing, prototyping, and final UI design. The design system covers 50+ components and screens, with a focus on data visualization and user workflow optimization.",
             category: "design",
             technologies: ["Figma", "Adobe Creative Suite", "Principle", "InVision"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH-HL9i-MkPPrGLDlqARjLNpmIlnaRNjKjAg&s",
             liveUrl: "https://saas-dashboard.example.com",
             featured: false,
             completedDate: "2023-10-15",
@@ -141,7 +141,7 @@ const PortfolioGallery: React.FC = () => {
                 "A comprehensive real estate platform featuring property listings, virtual tours, mortgage calculators, and agent management. Built with modern web technologies and integrated with MLS systems for real-time property data.",
             category: "webapp",
             technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Stripe"],
-            image: "/placeholder.svg?height=400&width=600",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUdHqNIUPUBQ46B39QYL9qQdjkpQAD907N-w&s",
             liveUrl: "https://realestate-platform.example.com",
             githubUrl: "https://github.com/example/realestate",
             featured: false,
@@ -170,7 +170,7 @@ const PortfolioGallery: React.FC = () => {
     }
 
     return (
-        <div className="py-24 bg-white relative overflow-hidden">
+        <div id="portfolio-gallery" className="py-24 bg-gradient-to-br from-purple-900 via-purple-800 to-blue-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0 opacity-10">
                 <div
@@ -200,13 +200,13 @@ const PortfolioGallery: React.FC = () => {
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    <h2 className="text-3xl text-white md:text-4xl font-bold mb-4">
                         Our{" "}
-                        <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                             Portfolio
                         </span>
                     </h2>
-                    <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                    <p className="text-xl text-white max-w-3xl mx-auto">
                         Explore our diverse collection of successful projects, from cutting-edge web applications to stunning mobile
                         experiences.
                     </p>
@@ -326,7 +326,11 @@ const PortfolioGallery: React.FC = () => {
                                     <div className="flex items-center justify-between text-sm text-gray-500">
                                         <div className="flex items-center">
                                             <Calendar className="w-4 h-4 mr-1" />
-                                            {new Date(project.completedDate).toLocaleDateString()}
+                                            {new Date(project.completedDate).toLocaleDateString('en-GB', {
+                                                year: 'numeric',
+                                                month: '2-digit',
+                                                day: '2-digit'
+                                            })}
                                         </div>
                                         <div className="flex items-center">
                                             <Users className="w-4 h-4 mr-1" />
@@ -413,7 +417,7 @@ const PortfolioGallery: React.FC = () => {
                                                         key={index}
                                                         className={`px-3 py-1 text-sm font-medium rounded-full bg-gradient-to-r ${getFilterColor(
                                                             selectedProject.category,
-                                                        )} bg-opacity-10 text-gray-700`}
+                                                        )} bg-opacity-10 text-white`}
                                                     >
                                                         {tech}
                                                     </span>
@@ -446,7 +450,11 @@ const PortfolioGallery: React.FC = () => {
                                                 <div className="flex justify-between">
                                                     <span className="text-gray-600">Completed:</span>
                                                     <span className="font-medium">
-                                                        {new Date(selectedProject.completedDate).toLocaleDateString()}
+                                                        {new Date(selectedProject.completedDate).toLocaleDateString('en-GB', {
+                                                            year: 'numeric',
+                                                            month: '2-digit',
+                                                            day: '2-digit'
+                                                        })}
                                                     </span>
                                                 </div>
                                                 <div className="flex justify-between">

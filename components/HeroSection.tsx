@@ -25,37 +25,37 @@ const HeroSection: React.FC = () => {
         {
             icon: Globe,
             text: "Websites",
-            color: "text-purple-600",
+            color: "text-yellow-500",
             description: "Stunning, responsive websites that convert visitors into customers"
         },
         {
             icon: Code,
             text: "Web Apps",
-            color: "text-blue-600",
+            color: "text-white",
             description: "Powerful web applications built with cutting-edge technology"
         },
         {
             icon: Smartphone,
             text: "Mobile Apps",
-            color: "text-indigo-600",
+            color: "text-pink-400",
             description: "Native iOS & Android apps that users love to engage with"
         },
         {
             icon: Cuboid,
             text: "3D Experiences",
-            color: "text-purple-500",
+            color: "text-red-400",
             description: "Immersive 3D websites that leave lasting impressions"
         },
         {
             icon: Palette,
             text: "UI/UX Design",
-            color: "text-blue-500",
+            color: "text-orange-400",
             description: "Beautiful, intuitive designs that enhance user experience"
         },
         {
             icon: Zap,
             text: "Software Solutions",
-            color: "text-indigo-500",
+            color: "text-green-500",
             description: "Custom software tailored to your business needs"
         }
     ];
@@ -96,7 +96,7 @@ const HeroSection: React.FC = () => {
     const currentServiceData = services[currentService];
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
+        <div id="hero" className="py-24 bg-gradient-to-br from-purple-900 via-purple-800 to-blue-900 relative overflow-hidden">
             {/* Animated Background Elements */}
             <div className="absolute inset-0 opacity-20">
                 <div
@@ -151,31 +151,30 @@ const HeroSection: React.FC = () => {
 
                         {/* Main Heading */}
                         <div>
-                            <h1 className="text-5xl md:text-7xl font-bold text-gray-800 mb-6 leading-tight">
+                            <h1 className="text-6xl bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
                                 Crafting
-                                <span className="block bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                                <span className="block text-white bg-clip-text">
                                     Digital Magic
                                 </span>
-                                <span className="text-4xl md:text-5xl text-gray-600">That Works</span>
                             </h1>
                         </div>
 
                         {/* Description */}
-                        <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
+                        <p className="text-xl text-yellow-400 max-w-2xl leading-relaxed">
                             Transform your vision into reality with cutting-edge web development,
                             stunning mobile apps, and immersive 3D experiences that captivate
                             your audience and drive business growth.
                         </p>
 
                         {/* Rotating Services Display */}
-                        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-100 shadow-sm">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 sticky top-6">
                             <div className="flex items-center mb-4">
-                                <span className="text-gray-700 font-medium">Currently featuring:</span>
+                                <span className="text-white font-medium">Currently featuring:</span>
                                 <div className="ml-3 flex space-x-1">
                                     {services.map((_, index) => (
                                         <div
                                             key={index}
-                                            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentService ? 'bg-purple-600 w-6' : 'bg-gray-300'
+                                            className={`w-2 text-white h-2 rounded-full transition-all duration-300 ${index === currentService ? 'bg-yellow-600 w-6' : 'bg-white'
                                                 }`}
                                         />
                                     ))}
@@ -206,7 +205,7 @@ const HeroSection: React.FC = () => {
                                                     <h3 className={`text-xl font-bold ${service.color}`}>
                                                         {service.text}
                                                     </h3>
-                                                    <p className="text-gray-600 text-sm mt-1">
+                                                    <p className="text-white text-sm mt-1">
                                                         {service.description}
                                                     </p>
                                                 </div>
@@ -219,7 +218,7 @@ const HeroSection: React.FC = () => {
 
                         {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <button className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center space-x-2">
+                            <button className="group px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-purple-900 rounded-xl font-semibold hover:from-yellow-500 hover:to-orange-500  transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center space-x-2">
                                 <span>Start Your Project</span>
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
@@ -233,16 +232,16 @@ const HeroSection: React.FC = () => {
                         {/* Trust Indicators */}
                         <div className="flex items-center justify-center lg:justify-start space-x-8 pt-8 border-t border-purple-100">
                             <div className="text-center">
-                                <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">150+</div>
-                                <div className="text-gray-600 text-sm">Projects Delivered</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-yellow-500 to-orange-800 bg-clip-text text-transparent">150+</div>
+                                <div className="text-white text-sm">Projects Delivered</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">98%</div>
-                                <div className="text-gray-600 text-sm">Client Satisfaction</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-900 bg-clip-text text-transparent">98%</div>
+                                <div className="text-white text-sm">Client Satisfaction</div>
                             </div>
                             <div className="text-center">
-                                <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">24/7</div>
-                                <div className="text-gray-600 text-sm">Support Available</div>
+                                <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-300 bg-clip-text text-transparent">24/7</div>
+                                <div className="text-white text-sm">Support Available</div>
                             </div>
                         </div>
                     </div>
@@ -349,7 +348,7 @@ const HeroSection: React.FC = () => {
             {/* Scroll Indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
                 <div className="w-6 h-10 border-2 border-purple-200 rounded-full flex justify-center">
-                    <div className="w-1 h-3 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full mt-2 animate-pulse"></div>
+                    <div className="w-1 h-3 bg-gradient-to-b from-yellow-400 to-red-300 rounded-full mt-2 animate-pulse"></div>
                 </div>
             </div>
         </div>
