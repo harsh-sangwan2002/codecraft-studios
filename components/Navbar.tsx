@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Code, ChevronDown, Phone, Mail } from 'lucide-react';
 
 interface DropdownItem {
@@ -18,6 +18,7 @@ const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
     const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+    const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         const handleScroll = (): void => {
@@ -53,19 +54,33 @@ const Navbar: React.FC = () => {
     };
 
     const handleDropdownEnter = (index: number, hasDropdown: boolean): void => {
+        if (dropdownTimeoutRef.current) {
+            clearTimeout(dropdownTimeoutRef.current);
+        }
         if (hasDropdown) {
             setActiveDropdown(index);
         }
     };
 
     const handleDropdownLeave = (): void => {
-        setActiveDropdown(null);
+        dropdownTimeoutRef.current = setTimeout(() => {
+            setActiveDropdown(null);
+        }, 200); // 200ms delay before hiding
     };
+
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => {
+            if (dropdownTimeoutRef.current) {
+                clearTimeout(dropdownTimeoutRef.current);
+            }
+        };
+    }, []);
 
     return (
         <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
-                : 'bg-white/80 backdrop-blur-sm'
+            ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
+            : 'bg-white/80 backdrop-blur-sm'
             }`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16 lg:h-20">
@@ -108,7 +123,11 @@ const Navbar: React.FC = () => {
 
                                 {/* Dropdown Menu */}
                                 {item.dropdown && activeDropdown === index && (
-                                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 animate-in slide-in-from-top-2 duration-200">
+                                    <div
+                                        className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2 animate-in slide-in-from-top-2 duration-200"
+                                        onMouseEnter={() => handleDropdownEnter(index, true)}
+                                        onMouseLeave={handleDropdownLeave}
+                                    >
                                         {item.dropdown.map((dropdownItem: DropdownItem, dropIndex: number) => (
                                             <a
                                                 key={dropIndex}

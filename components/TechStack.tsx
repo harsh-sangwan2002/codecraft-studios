@@ -5,6 +5,14 @@ import type React from "react"
 import { useState, useRef, useEffect } from "react"
 import { motion } from "framer-motion"
 import { Pause, Play, ChevronLeft, ChevronRight } from "lucide-react"
+import {
+    SiReact, SiNextdotjs, SiVuedotjs, SiAngular, SiSvelte, SiTypescript, SiTailwindcss, SiFramer,
+    SiNodedotjs, SiExpress, SiPython, SiDjango, SiRubyonrails, SiPhp, SiGraphql,
+    SiFlutter, SiSwift, SiKotlin, SiIonic, SiExpo, SiAndroid, SiApple,
+    SiMongodb, SiPostgresql, SiMysql, SiFirebase, SiSupabase, SiRedis, SiPrisma, SiAmazondynamodb,
+    SiDocker, SiKubernetes, SiAmazon, SiVercel, SiGithubactions, SiTerraform, SiNetlify, SiCircleci
+} from "react-icons/si"
+import { FaJava } from "react-icons/fa"
 
 interface TechCategory {
     name: string
@@ -14,7 +22,7 @@ interface TechCategory {
 
 interface Technology {
     name: string
-    icon: string // In a real implementation, this would be a path to an SVG or an imported component
+    icon: React.ElementType
 }
 
 const TechStack: React.FC = () => {
@@ -30,70 +38,70 @@ const TechStack: React.FC = () => {
             name: "Frontend",
             color: "from-purple-600 to-blue-600",
             technologies: [
-                { name: "React", icon: "react" },
-                { name: "Next.js", icon: "nextjs" },
-                { name: "Vue", icon: "vue" },
-                { name: "Angular", icon: "angular" },
-                { name: "Svelte", icon: "svelte" },
-                { name: "TypeScript", icon: "typescript" },
-                { name: "Tailwind CSS", icon: "tailwind" },
-                { name: "Framer Motion", icon: "framer" },
+                { name: "React", icon: SiReact },
+                { name: "Next.js", icon: SiNextdotjs },
+                { name: "Vue", icon: SiVuedotjs },
+                { name: "Angular", icon: SiAngular },
+                { name: "Svelte", icon: SiSvelte },
+                { name: "TypeScript", icon: SiTypescript },
+                { name: "Tailwind CSS", icon: SiTailwindcss },
+                { name: "Framer Motion", icon: SiFramer },
             ],
         },
         {
             name: "Backend",
             color: "from-blue-600 to-indigo-600",
             technologies: [
-                { name: "Node.js", icon: "nodejs" },
-                { name: "Express", icon: "express" },
-                { name: "Python", icon: "python" },
-                { name: "Django", icon: "django" },
-                { name: "Ruby on Rails", icon: "rails" },
-                { name: "PHP", icon: "php" },
-                { name: "Java", icon: "java" },
-                { name: "GraphQL", icon: "graphql" },
+                { name: "Node.js", icon: SiNodedotjs },
+                { name: "Express", icon: SiExpress },
+                { name: "Python", icon: SiPython },
+                { name: "Django", icon: SiDjango },
+                { name: "Ruby on Rails", icon: SiRubyonrails },
+                { name: "PHP", icon: SiPhp },
+                { name: "Java", icon: FaJava },
+                { name: "GraphQL", icon: SiGraphql },
             ],
         },
         {
             name: "Mobile",
             color: "from-indigo-600 to-purple-600",
             technologies: [
-                { name: "React Native", icon: "react-native" },
-                { name: "Flutter", icon: "flutter" },
-                { name: "Swift", icon: "swift" },
-                { name: "Kotlin", icon: "kotlin" },
-                { name: "Ionic", icon: "ionic" },
-                { name: "Expo", icon: "expo" },
-                { name: "Android", icon: "android" },
-                { name: "iOS", icon: "ios" },
+                { name: "React Native", icon: SiReact },
+                { name: "Flutter", icon: SiFlutter },
+                { name: "Swift", icon: SiSwift },
+                { name: "Kotlin", icon: SiKotlin },
+                { name: "Ionic", icon: SiIonic },
+                { name: "Expo", icon: SiExpo },
+                { name: "Android", icon: SiAndroid },
+                { name: "iOS", icon: SiApple },
             ],
         },
         {
             name: "Database",
             color: "from-purple-500 to-blue-500",
             technologies: [
-                { name: "MongoDB", icon: "mongodb" },
-                { name: "PostgreSQL", icon: "postgresql" },
-                { name: "MySQL", icon: "mysql" },
-                { name: "Firebase", icon: "firebase" },
-                { name: "Supabase", icon: "supabase" },
-                { name: "Redis", icon: "redis" },
-                { name: "Prisma", icon: "prisma" },
-                { name: "DynamoDB", icon: "dynamodb" },
+                { name: "MongoDB", icon: SiMongodb },
+                { name: "PostgreSQL", icon: SiPostgresql },
+                { name: "MySQL", icon: SiMysql },
+                { name: "Firebase", icon: SiFirebase },
+                { name: "Supabase", icon: SiSupabase },
+                { name: "Redis", icon: SiRedis },
+                { name: "Prisma", icon: SiPrisma },
+                { name: "DynamoDB", icon: SiAmazondynamodb },
             ],
         },
         {
             name: "DevOps",
             color: "from-blue-500 to-indigo-500",
             technologies: [
-                { name: "Docker", icon: "docker" },
-                { name: "Kubernetes", icon: "kubernetes" },
-                { name: "AWS", icon: "aws" },
-                { name: "Vercel", icon: "vercel" },
-                { name: "GitHub Actions", icon: "github-actions" },
-                { name: "Terraform", icon: "terraform" },
-                { name: "Netlify", icon: "netlify" },
-                { name: "CircleCI", icon: "circleci" },
+                { name: "Docker", icon: SiDocker },
+                { name: "Kubernetes", icon: SiKubernetes },
+                { name: "AWS", icon: SiAmazon },
+                { name: "Vercel", icon: SiVercel },
+                { name: "GitHub Actions", icon: SiGithubactions },
+                { name: "Terraform", icon: SiTerraform },
+                { name: "Netlify", icon: SiNetlify },
+                { name: "CircleCI", icon: SiCircleci },
             ],
         },
     ]
@@ -282,15 +290,10 @@ const TechStack: React.FC = () => {
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className="flex flex-col items-center justify-center w-32 h-32 bg-white rounded-xl shadow-md border border-gray-100 p-4 hover:shadow-lg transition-shadow"
                                 >
-                                    {/* This would be replaced with actual SVG logos in a real implementation */}
                                     <div
-                                        className={`w-16 h-16 rounded-full bg-gradient-to-br ${categories[activeCategory].color} bg-opacity-10 flex items-center justify-center mb-3`}
+                                        className={`w-16 h-16 rounded-full bg-gradient-to-br ${categories[activeCategory].color} flex items-center justify-center mb-3`}
                                     >
-                                        <span
-                                            className="text-xl font-bold text-white"
-                                        >
-                                            {tech.name.charAt(0)}
-                                        </span>
+                                        <tech.icon className="w-8 h-8 text-white" />
                                     </div>
                                     <span className="text-sm font-medium text-gray-700 text-center">{tech.name}</span>
                                 </motion.div>
@@ -306,13 +309,9 @@ const TechStack: React.FC = () => {
                                     className="flex flex-col items-center justify-center w-32 h-32 bg-white rounded-xl shadow-md border border-gray-100 p-4 hover:shadow-lg transition-shadow"
                                 >
                                     <div
-                                        className={`w-16 h-16 rounded-full bg-gradient-to-br ${categories[activeCategory].color} bg-opacity-10 flex items-center justify-center mb-3`}
+                                        className={`w-16 h-16 rounded-full bg-gradient-to-br ${categories[activeCategory].color} flex items-center justify-center mb-3`}
                                     >
-                                        <span
-                                            className="text-xl font-bold text-white"
-                                        >
-                                            {tech.name.charAt(0)}
-                                        </span>
+                                        <tech.icon className="w-8 h-8 text-white" />
                                     </div>
                                     <span className="text-sm font-medium text-gray-700 text-center">{tech.name}</span>
                                 </motion.div>

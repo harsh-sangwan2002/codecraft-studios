@@ -108,27 +108,27 @@ const ServiceShowcase: React.FC = () => {
     }
 
     return (
-        <div className="py-24 bg-white relative overflow-hidden">
+        <div className="py-24 bg-gradient-to-br from-blue-50 via-white to-indigo-50 relative overflow-hidden">
             {/* Background Elements */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 opacity-20">
                 <div
-                    className="absolute w-96 h-96 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full blur-3xl"
+                    className="absolute w-96 h-96 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full blur-3xl"
                     style={{ top: "30%", right: "10%", transform: "translate(50%, -50%)" }}
                 ></div>
                 <div
-                    className="absolute w-80 h-80 bg-gradient-to-br from-blue-400 to-indigo-400 rounded-full blur-3xl"
+                    className="absolute w-80 h-80 bg-gradient-to-br from-indigo-400 to-purple-400 rounded-full blur-3xl"
                     style={{ bottom: "20%", left: "15%", transform: "translate(-50%, 50%)" }}
                 ></div>
             </div>
 
             {/* Grid Pattern */}
-            <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 opacity-10">
                 <div
                     className="w-full h-full"
                     style={{
                         backgroundImage: `
-                        linear-gradient(rgba(147, 51, 234, 0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(147, 51, 234, 0.1) 1px, transparent 1px)
+                        linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
                     `,
                         backgroundSize: "50px 50px",
                     }}
@@ -140,7 +140,7 @@ const ServiceShowcase: React.FC = () => {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         Our{" "}
-                        <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
                             Expertise
                         </span>
                     </h2>
@@ -160,9 +160,9 @@ const ServiceShowcase: React.FC = () => {
                         return (
                             <motion.div
                                 key={index}
-                                className={`relative bg-white rounded-2xl p-6 transition-all duration-300 
+                                className={`relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 transition-all duration-300 
                                     ${isActive || isHovered ? "shadow-xl scale-105" : "shadow-md hover:shadow-lg"} 
-                                    border border-gray-100 overflow-hidden group`}
+                                    border border-blue-100 overflow-hidden group`}
                                 onClick={() => setActiveService(isActive ? null : index)}
                                 onMouseEnter={() => setHoveredService(index)}
                                 onMouseLeave={() => setHoveredService(null)}
@@ -188,11 +188,11 @@ const ServiceShowcase: React.FC = () => {
 
                                     {/* Decorative Elements */}
                                     <div
-                                        className="absolute w-8 h-8 rounded-full bg-gradient-to-br from-purple-200 to-blue-200 
+                                        className="absolute w-8 h-8 rounded-full bg-gradient-to-br from-blue-200 to-indigo-200 
                                         -top-2 -right-2 opacity-50 blur-sm"
                                     ></div>
                                     <div
-                                        className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-blue-200 to-indigo-200 
+                                        className="absolute w-4 h-4 rounded-full bg-gradient-to-br from-indigo-200 to-purple-200 
                                         bottom-0 right-4 opacity-50 blur-sm"
                                     ></div>
                                 </div>
@@ -235,15 +235,15 @@ const ServiceShowcase: React.FC = () => {
 
                 {/* CTA Section */}
                 <div className="mt-20 text-center">
-                    <div className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 p-[2px] rounded-xl">
-                        <div className="bg-white px-8 py-6 rounded-[10px]">
+                    <div className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 p-[2px] rounded-xl">
+                        <div className="bg-white/80 backdrop-blur-sm px-8 py-6 rounded-[10px]">
                             <h3 className="text-2xl font-bold mb-2">Ready to transform your digital presence?</h3>
                             <p className="text-gray-600 mb-6">
                                 Let's discuss how our expertise can help achieve your business goals.
                             </p>
                             <button
-                                className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl 
-                                font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 
+                                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl 
+                                font-semibold hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 
                                 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center mx-auto"
                             >
                                 <span>Schedule a Consultation</span>

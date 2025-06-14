@@ -96,9 +96,9 @@ const HeroSection: React.FC = () => {
     const currentServiceData = services[currentService];
 
     return (
-        <div className="min-h-screen bg-white relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 relative overflow-hidden">
             {/* Animated Background Elements */}
-            <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 opacity-20">
                 <div
                     className="absolute w-96 h-96 bg-gradient-to-br from-purple-400 to-blue-400 rounded-full blur-3xl"
                     style={{
@@ -126,7 +126,7 @@ const HeroSection: React.FC = () => {
             </div>
 
             {/* Grid Pattern */}
-            <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 opacity-10">
                 <div className="w-full h-full" style={{
                     backgroundImage: `
             linear-gradient(rgba(147, 51, 234, 0.1) 1px, transparent 1px),
@@ -142,7 +142,7 @@ const HeroSection: React.FC = () => {
                     {/* Left Content */}
                     <div className="text-center lg:text-left space-y-8">
                         {/* Badge */}
-                        <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full">
+                        <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-sm border border-purple-100">
                             <Star className="w-4 h-4 text-purple-600 mr-2" />
                             <span className="text-purple-700 font-medium text-sm">
                                 Trusted by 100+ Clients Worldwide
@@ -168,7 +168,7 @@ const HeroSection: React.FC = () => {
                         </p>
 
                         {/* Rotating Services Display */}
-                        <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
+                        <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-purple-100 shadow-sm">
                             <div className="flex items-center mb-4">
                                 <span className="text-gray-700 font-medium">Currently featuring:</span>
                                 <div className="ml-3 flex space-x-1">
@@ -224,14 +224,14 @@ const HeroSection: React.FC = () => {
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </button>
 
-                            <button className="group px-8 py-4 bg-white text-gray-700 rounded-xl font-semibold border-2 border-gray-200 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 flex items-center justify-center space-x-2">
+                            <button className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-700 rounded-xl font-semibold border-2 border-purple-100 hover:border-purple-300 hover:text-purple-600 transition-all duration-300 flex items-center justify-center space-x-2">
                                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                                 <span>Watch Demo</span>
                             </button>
                         </div>
 
                         {/* Trust Indicators */}
-                        <div className="flex items-center justify-center lg:justify-start space-x-8 pt-8 border-t border-gray-100">
+                        <div className="flex items-center justify-center lg:justify-start space-x-8 pt-8 border-t border-purple-100">
                             <div className="text-center">
                                 <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">150+</div>
                                 <div className="text-gray-600 text-sm">Projects Delivered</div>
@@ -252,7 +252,7 @@ const HeroSection: React.FC = () => {
                         {/* Main 3D Card */}
                         <div className="absolute inset-0 flex items-center justify-center">
                             <div className="relative perspective-1000">
-                                <div className="w-80 h-96 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-2xl border border-gray-100 p-8 transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700">
+                                <div className="w-80 h-96 bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl border border-purple-100 p-8 transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700">
                                     {/* Browser Header */}
                                     <div className="flex items-center space-x-2 mb-6">
                                         <div className="w-3 h-3 bg-red-400 rounded-full"></div>
@@ -276,7 +276,7 @@ const HeroSection: React.FC = () => {
                                             </div>
                                             <div className="h-24 bg-gradient-to-br from-indigo-100 to-indigo-200 rounded-xl flex items-center justify-center">
                                                 <Smartphone className="w-8 h-8 text-indigo-600" />
-                                            </div>  
+                                            </div>
                                             <div className="h-24 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl flex items-center justify-center">
                                                 <Cuboid className="w-8 h-8 text-purple-600" />
                                             </div>
@@ -348,7 +348,7 @@ const HeroSection: React.FC = () => {
 
             {/* Scroll Indicator */}
             <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
+                <div className="w-6 h-10 border-2 border-purple-200 rounded-full flex justify-center">
                     <div className="w-1 h-3 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full mt-2 animate-pulse"></div>
                 </div>
             </div>
