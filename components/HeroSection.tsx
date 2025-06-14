@@ -20,6 +20,7 @@ interface FloatingCardProps {
 const HeroSection: React.FC = () => {
     const [currentService, setCurrentService] = useState<number>(0);
     const [mousePosition, setMousePosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+    const [isClient, setIsClient] = useState(false);
 
     const services: Service[] = [
         {
@@ -61,6 +62,10 @@ const HeroSection: React.FC = () => {
     ];
 
     useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
         const interval = setInterval(() => {
             setCurrentService((prev) => (prev + 1) % services.length);
         }, 3000);
@@ -94,6 +99,20 @@ const HeroSection: React.FC = () => {
     );
 
     const currentServiceData = services[currentService];
+
+    const getOrbitingElementStyle = (index: number) => {
+        const angle = (index * 360) / services.length;
+        const radius = 180;
+        const x = Math.cos((angle * Math.PI) / 180) * radius;
+        const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+        return {
+            left: '50%',
+            top: '50%',
+            transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+            animationDelay: `${index * 0.5}s`
+        };
+    };
 
     return (
         <div id="hero" className="py-24 bg-gradient-to-br from-purple-900 via-purple-800 to-blue-900 relative overflow-hidden">
@@ -315,10 +334,12 @@ const HeroSection: React.FC = () => {
                             <div className="relative w-96 h-96">
                                 {services.map((service, index) => {
                                     const Icon = service.icon;
-                                    const angle = (index * 360) / services.length;
-                                    const radius = 180;
-                                    const x = Math.cos((angle * Math.PI) / 180) * radius;
-                                    const y = Math.sin((angle * Math.PI) / 180) * radius;
+                                    const style = isClient ? getOrbitingElementStyle(index) : {
+                                        left: '50%',
+                                        top: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        opacity: 0
+                                    };
 
                                     return (
                                         <div
@@ -327,12 +348,7 @@ const HeroSection: React.FC = () => {
                                                 ? 'bg-gradient-to-br from-purple-600 to-blue-600 scale-125 shadow-lg'
                                                 : 'bg-white border-2 border-gray-200 scale-100'
                                                 }`}
-                                            style={{
-                                                left: '50%',
-                                                top: '50%',
-                                                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-                                                animationDelay: `${index * 0.5}s`
-                                            }}
+                                            style={style}
                                         >
                                             <Icon className={`w-4 h-4 ${index === currentService ? 'text-white' : 'text-gray-400'
                                                 }`} />
