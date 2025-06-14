@@ -1,6 +1,7 @@
 "use client"
 
-import React, { Suspense, useState, useRef, useEffect } from "react"
+import React from "react"
+import { Suspense, useState, useRef } from "react"
 import { Canvas, useFrame } from "@react-three/fiber"
 import {
     OrbitControls,
@@ -16,7 +17,7 @@ import {
 } from "@react-three/drei"
 import { motion } from "framer-motion"
 import type * as THREE from "three"
-import { Play, Pause, Maximize2, Minimize2, Palette, Settings, Eye, Code, Cuboid, Sparkles, X } from "lucide-react"
+import { Play, Pause, Maximize2, Minimize2, Palette, Settings, Eye, Code, Cuboid, Sparkles } from "lucide-react"
 
 interface Demo3D {
     id: string
@@ -29,20 +30,8 @@ interface Demo3D {
     complexity: "Beginner" | "Intermediate" | "Advanced"
 }
 
-// Loading component for outside Canvas
-function LoadingOverlay() {
-    return (
-        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm z-20 flex items-center justify-center">
-            <div className="flex flex-col items-center">
-                <div className="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mb-4"></div>
-                <div className="text-gray-600 font-medium">Loading...</div>
-            </div>
-        </div>
-    )
-}
-
-// Loading component for inside Canvas
-function CanvasLoader() {
+// Loading component
+function Loader() {
     const { progress } = useProgress()
     return (
         <Html center>
@@ -54,76 +43,15 @@ function CanvasLoader() {
     )
 }
 
-// Error Boundary Component
-class ErrorBoundary extends React.Component<
-    { children: React.ReactNode; fallback: React.ReactNode },
-    { hasError: boolean }
-> {
-    constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
-        super(props)
-        this.state = { hasError: false }
-    }
-
-    static getDerivedStateFromError() {
-        return { hasError: true }
-    }
-
-    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-        console.error('3D Scene Error:', error, errorInfo)
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return this.props.fallback
-        }
-        return this.props.children
-    }
-}
-
-// Scene Component
-function Scene({ children }: { children: React.ReactNode }) {
-    const [retryCount, setRetryCount] = useState(0)
-    const maxRetries = 3
-
-    const handleError = () => {
-        if (retryCount < maxRetries) {
-            setRetryCount(prev => prev + 1)
-        }
-    }
-
-    return (
-        <ErrorBoundary
-            fallback={
-                <div className="flex items-center justify-center h-full">
-                    <div className="text-center p-4">
-                        <div className="text-red-500 mb-2">Failed to load 3D scene</div>
-                        {retryCount < maxRetries && (
-                            <button
-                                onClick={() => setRetryCount(prev => prev + 1)}
-                                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                            >
-                                Retry Loading
-                            </button>
-                        )}
-                    </div>
-                </div>
-            }
-        >
-            <Suspense fallback={<Loader />}>
-                {children}
-            </Suspense>
-        </ErrorBoundary>
-    )
-}
-
 // Animated Cube Demo
 function AnimatedCube({ isPlaying, color }: { isPlaying: boolean; color: string }) {
     const meshRef = useRef<THREE.Mesh>(null)
 
-    useFrame(() => {
+    useFrame((state) => {
         if (meshRef.current && isPlaying) {
             meshRef.current.rotation.x += 0.01
             meshRef.current.rotation.y += 0.01
+            meshRef.current.position.y = Math.sin(state.clock.elapsedTime) * 0.5
         }
     })
 
@@ -144,10 +72,23 @@ function ProductConfigurator({ color, material }: { color: string; material: str
         }
     })
 
+    const getMaterial = () => {
+        switch (material) {
+            case "metal":
+                return <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
+            case "glass":
+                return <meshPhysicalMaterial color={color} transmission={0.9} opacity={0.1} transparent />
+            case "plastic":
+                return <meshStandardMaterial color={color} metalness={0.1} roughness={0.8} />
+            default:
+                return <meshStandardMaterial color={color} />
+        }
+    }
+
     return (
         <group>
             <Sphere ref={meshRef} args={[1.5, 32, 32]}>
-                <meshStandardMaterial color={color} />
+                {getMaterial()}
             </Sphere>
             <Plane args={[10, 10]} rotation={[-Math.PI / 2, 0, 0]} position={[0, -2, 0]}>
                 <meshStandardMaterial color="#f0f0f0" />
@@ -167,10 +108,10 @@ function ParticleSystem({ count }: { count: number }) {
         particlesPosition[i * 3 + 2] = (Math.random() - 0.5) * 10
     }
 
-    useFrame(() => {
+    useFrame((state) => {
         if (points.current) {
-            points.current.rotation.x += 0.01
-            points.current.rotation.y += 0.01
+            points.current.rotation.x = state.clock.elapsedTime * 0.1
+            points.current.rotation.y = state.clock.elapsedTime * 0.15
         }
     })
 
@@ -193,16 +134,16 @@ function ParticleSystem({ count }: { count: number }) {
 function MorphingGeometry({ isActive }: { isActive: boolean }) {
     const meshRef = useRef<THREE.Mesh>(null)
 
-    useFrame(() => {
+    useFrame((state) => {
         if (meshRef.current && isActive) {
-            meshRef.current.rotation.x += 0.01
-            meshRef.current.rotation.y += 0.01
+            meshRef.current.rotation.x = state.clock.elapsedTime * 0.5
+            meshRef.current.rotation.y = state.clock.elapsedTime * 0.3
         }
     })
 
     return (
         <Sphere ref={meshRef} args={[1.5, 32, 32]}>
-            <MeshDistortMaterial color="#3b82f6" attach="material" distort={0.5} speed={2} />
+            <MeshDistortMaterial color="#3b82f6" attach="material" distort={0.5} speed={2} roughness={0.2} />
         </Sphere>
     )
 }
@@ -226,6 +167,8 @@ function InteractiveEnvironment({ lightIntensity }: { lightIntensity: number }) 
                     <meshStandardMaterial color="#6366f1" />
                 </Box>
             </Float>
+            <ambientLight intensity={0.5} />
+            <pointLight position={[10, 10, 10]} intensity={lightIntensity} />
         </group>
     )
 }
@@ -234,23 +177,6 @@ const ThreeDShowcase: React.FC = () => {
     const [activeDemo, setActiveDemo] = useState(0)
     const [isPlaying, setIsPlaying] = useState(true)
     const [isFullscreen, setIsFullscreen] = useState(false)
-    const [isLoading, setIsLoading] = useState(true)
-    const [loadAttempt, setLoadAttempt] = useState(0)
-    const maxLoadAttempts = 3
-
-    // Reset loading state when changing demos
-    useEffect(() => {
-        setIsLoading(true)
-        setLoadAttempt(0)
-    }, [activeDemo])
-
-    // Handle loading errors
-    const handleLoadError = () => {
-        if (loadAttempt < maxLoadAttempts) {
-            setLoadAttempt(prev => prev + 1)
-            setIsLoading(true)
-        }
-    }
 
     // Demo-specific controls
     const [cubeColor, setCubeColor] = useState("#8b5cf6")
@@ -441,20 +367,6 @@ const ThreeDShowcase: React.FC = () => {
         }
     }
 
-    // Cleanup function for Three.js resources
-    useEffect(() => {
-        return () => {
-            // Force cleanup of Three.js resources
-            const canvas = document.querySelector('canvas')
-            if (canvas) {
-                const gl = canvas.getContext('webgl')
-                if (gl) {
-                    gl.getExtension('WEBGL_lose_context')?.loseContext()
-                }
-            }
-        }
-    }, [])
-
     return (
         <div className="py-24 bg-white relative overflow-hidden">
             {/* Background Elements */}
@@ -541,34 +453,10 @@ const ThreeDShowcase: React.FC = () => {
                                 </button>
                             </div>
 
-                            {/* Fullscreen Close Button */}
-                            {isFullscreen && (
-                                <button
-                                    onClick={() => setIsFullscreen(false)}
-                                    className="absolute top-4 right-4 z-10 p-2 bg-white/90 rounded-lg shadow-md hover:bg-white transition-colors"
-                                    title="Close"
-                                >
-                                    <X className="w-4 h-4" />
-                                </button>
-                            )}
-
-                            {/* Loading Overlay */}
-                            {isLoading && <LoadingOverlay />}
-
                             {/* 3D Canvas */}
                             <div className={`${isFullscreen ? "fixed inset-0 z-50 bg-gray-50" : "h-96 lg:h-[500px]"}`}>
-                                <Canvas
-                                    camera={{ position: [0, 0, 5], fov: 75 }}
-                                    style={{ background: 'transparent' }}
-                                    gl={{
-                                        antialias: true,
-                                        alpha: true,
-                                        powerPreference: 'high-performance'
-                                    }}
-                                    onCreated={() => setIsLoading(false)}
-                                >
-                                    <Suspense fallback={<CanvasLoader />}>
-                                        <color attach="background" args={['#f8fafc']} />
+                                <Canvas>
+                                    <Suspense fallback={<Loader />}>
                                         <PerspectiveCamera makeDefault position={[0, 0, 5]} />
                                         <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
                                         <Environment preset="studio" />
