@@ -582,8 +582,8 @@ const PricingCalculator: React.FC = () => {
                                     <div className="flex justify-between items-center">
                                         <span className="text-purple-100">Timeline Adjustment ({currentTimeline?.name})</span>
                                         <span className="text-yellow-400">
-                                            {currentTimeline?.multiplier > 1 ? "+" : ""}
-                                            {((currentTimeline?.multiplier - 1) * 100).toFixed(0)}%
+                                            {(currentTimeline?.multiplier ?? 1) > 1 ? "+" : ""}
+                                            {(((currentTimeline?.multiplier ?? 1) - 1) * 100).toFixed(0)}%
                                         </span>
                                     </div>
                                 )}
