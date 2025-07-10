@@ -181,7 +181,7 @@ const Navbar: React.FC = () => {
                                 </div>
                                 <div className="flex items-center space-x-1">
                                     <Mail className="w-4 h-4 text-blue-600" />
-                                    <span>hello@codecraft.dev</span>
+                                    <span>hsangwan2002@gmail.com</span>
                                 </div>
                             </div>
 
