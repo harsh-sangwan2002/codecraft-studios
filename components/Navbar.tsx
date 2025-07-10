@@ -22,6 +22,7 @@ const Navbar: React.FC = () => {
     const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [randomCode, setRandomCode] = useState<string>('');
+    const [isEmailCopied, setIsEmailCopied] = useState<boolean>(false);
     const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Generate random code
@@ -172,22 +173,37 @@ const Navbar: React.FC = () => {
 
                         {/* Contact Info & CTA */}
                         <div className="hidden lg:flex items-center space-x-6">
-                            <div className="flex items-center space-x-4 text-sm text-gray-600">
-                                <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-1 text-sm text-gray-600">
+                                <div className="flex items-center">
                                     <Phone className="w-4 h-4 text-purple-600" />
-                                    <a href="tel:+918700437332" className="hover:text-purple-600 transition-colors duration-300">
+                                    <a href="https://wa.me/918700437332" target="_blank" rel="noopener noreferrer" className="hover:text-purple-600 transition-colors duration-300">
                                         +91 8700437332
                                     </a>
                                 </div>
-                                <div className="flex items-center space-x-1">
+                                <div className="flex items-center space-x-1 relative">
                                     <Mail className="w-4 h-4 text-blue-600" />
-                                    <span>hsangwan2002@gmail.com</span>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            navigator.clipboard.writeText('hsangwan2002@gmail.com');
+                                            setIsEmailCopied(true);
+                                            setTimeout(() => setIsEmailCopied(false), 1500);
+                                        }}
+                                        className="cursor-pointer hover:text-blue-600 transition-colors duration-300 focus:outline-none"
+                                    >
+                                        hsangwan2002@gmail.com
+                                    </button>
+                                    {isEmailCopied && (
+                                        <span className="absolute left-1/2 -top-7 -translate-x-1/2 bg-blue-600 text-white text-xs rounded px-2 py-1 shadow-lg animate-fade-in-out z-10">
+                                            Copied!
+                                        </span>
+                                    )}
                                 </div>
                             </div>
 
                             <button
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 shadow-md"
+                                className="cursor-pointer px-6 py-2.5 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-blue-700 transform hover:scale-105 transition-all duration-200 shadow-md"
                             >
                                 Get Quote
                             </button>
