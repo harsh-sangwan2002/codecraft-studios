@@ -6,8 +6,6 @@ import { useState } from "react"
 import { Linkedin, Twitter, Github, Mail } from "lucide-react"
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
-import HeroSection from "@/components/HeroSection"
-import Link from "next/link"
 
 interface TeamMember {
     id: number
@@ -53,45 +51,7 @@ const TeamPage: React.FC = () => {
                 email: "mailto:hsangwan2002@gmail.com",
             },
         },
-        {
-            id: 3,
-            name: "Vandana Jaglan",
-            position: "SAP Consultatnt & Full Stack Developer",
-            description:
-                "Code architect with expertise in modern web technologies. Turns complex problems into elegant solutions with clean, scalable code.",
-            image: "/vandana.png",
-            social: {
-                linkedin: "https://www.linkedin.com/in/vandana-j-567505270/",
-                github: "https://github.com/vandana",
-                email: "mailto:vandana@codecraft.com",
-            },
-        },
-        {
-            id: 4,
-            name: "Emily Watson",
-            position: "Mobile App Developer",
-            description:
-                "Mobile-first developer who crafts seamless experiences across iOS and Android. Expert in React Native and native development.",
-            image: "/emma.jpeg",
-            social: {
-                linkedin: "https://www.linkedin.com/in/emma-watson-a31a97176/",
-                github: "https://github.com/emma-watson",
-                twitter: "https://twitter.com/emilywatson",
-            },
-        },
-        {
-            id: 5,
-            name: "David Kim",
-            position: "3D Developer & Creative Technologist",
-            description:
-                "Creative technologist pushing the boundaries of web-based 3D experiences. Specializes in WebGL, Three.js, and immersive storytelling.",
-            image: "/david.jpeg",
-            social: {
-                linkedin: "https://www.linkedin.com/in/david-kim-250/",
-                github: "https://github.com/daviddkkim",
-                email: "mailto:david@codecraft.com?subject=Hello from CodeCraft Studios&body=Hi David,%0D%0A%0D%0AI'm interested in your services.%0D%0A%0D%0ABest regards,",
-            },
-        },
+
     ]
 
     const containerVariants = {
